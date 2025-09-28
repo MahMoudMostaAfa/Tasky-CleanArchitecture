@@ -1,0 +1,29 @@
+@baseurl =https://localhost:7017
+
+
+POST   {{baseurl}}/api/auth/register
+Content-Type: application/json
+
+{
+    "FirstName": "John",
+    "LastName": "Doe",
+    "Email": "mahmoud@example.com",
+    "Password": "P@ssword1"
+}
+###################
+
+
+POST   {{baseurl}}/api/auth/login
+Content-Type: application/json
+
+{
+    "Email": "mahmoud@example.com",
+    "Password": "P@ssword1"
+}
+
+###################
+
+GET    {{baseurl}}/api/auth/me
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NWM0MjhkNS1mZGRiLTRjZDUtOWFmYS1mNmM0ZmRhNWE1YmMiLCJlbWFpbCI6Im1haG1vdWRAZXhhbXBsZS5jb20iLCJyb2xlIjoiVXNlciIsIm5iZiI6MTc1OTA5MDQ0MCwiZXhwIjoxNzU5MDk0MDQwLCJpYXQiOjE3NTkwOTA0NDAsImlzcyI6ImxvY2FsaG9zdCIsImF1ZCI6ImxvY2FsaG9zdCJ9.x-P1dkU42zJtJuk-yhDfDng2xBMY109PCLF5oRNC3Jo
+
