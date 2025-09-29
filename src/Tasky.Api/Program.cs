@@ -18,8 +18,9 @@ if (app.Environment.IsDevelopment())
 {
 
   await app.InitialiseDatabaseAsync();
-}
 
+}
+app.UseStatusCodePages();
 
 app.UseAuthentication();
 

@@ -13,5 +13,15 @@ public class ProjectErrors
     description: "Name is required"
   );
 
+  public static Error ProjectNotFound => Error.NotFound(
+    code: "Project.NotFound",
+    description: "Project not found"
+  );
+
+  public static Error UserNotAuthorized => Error.Unauthorized(
+    code: "Project.UserNotAuthorized",
+    description: "User is not authorized to access this project"
+  );
+
 
 }

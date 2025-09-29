@@ -56,6 +56,22 @@ public class Project : Entity
     return Project;
 
   }
+
+  public Result<Updated> Update(string? name, string? description)
+  {
+    if (!string.IsNullOrWhiteSpace(name) && name != Name)
+    {
+      Name = name;
+    }
+    if (!string.IsNullOrWhiteSpace(description) && description != Description)
+    {
+      Description = description;
+    }
+
+    ModifiedAt = DateTime.UtcNow;
+
+    return Result.Updated;
+  }
 }
 
 

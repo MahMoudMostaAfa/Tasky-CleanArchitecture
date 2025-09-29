@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Tasky.Application.Common.Interfaces;
+using Tasky.Domain.Projects;
 using Tasky.Infrastructure.Data;
 using Tasky.Infrastructure.Identity;
 using Tasky.Infrastructure.Repositories;
@@ -67,6 +68,8 @@ public static class DependencyInjection
     services.AddScoped<IIdentityService, IdentityService>();
 
     services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+    services.AddScoped<IProjectRepository, ProjectRepository>();
 
     services.AddScoped<ITokenProvider, TokenProvider>();
 

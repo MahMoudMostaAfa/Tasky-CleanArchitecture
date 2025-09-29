@@ -9,10 +9,11 @@ using Tasky.Application.Features.Identity.Commands.Register;
 using Tasky.Application.Features.Identity.Queries.GetUserInfo;
 
 
-namespace Tasky.Api.V1.Controllers;
+namespace Tasky.Api.Controllers.V1;
 
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/auth")]
+
 public class AuthController : ApiController
 {
   private readonly ISender _sender;
