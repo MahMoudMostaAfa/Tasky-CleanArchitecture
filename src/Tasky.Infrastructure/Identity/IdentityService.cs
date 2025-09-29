@@ -1,11 +1,11 @@
-namespace Tasky.Infrastructure.Identity;
-
-using System.Security.Principal;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Tasky.Application.Common.Interfaces;
-using Tasky.Application.Features.Users;
+using Tasky.Application.Features.Identity;
+using Tasky.Application.Features.Identity.Dtos;
+
 using Tasky.Domain.Common.Results;
+
+namespace Tasky.Infrastructure.Identity;
 
 public class IdentityService(UserManager<AppUser> _userManager) : IIdentityService
 {

@@ -1,8 +1,9 @@
-public class UserDto
+namespace Tasky.Application.Features.Identity;
+
+public class RegisterUserRequest
 {
-  public string Id { get; set; } = null!;
   public string FirstName { get; set; } = null!;
   public string LastName { get; set; } = null!;
   public string Email { get; set; } = null!;
-  public IList<string> Roles { get; set; } = new List<string>();
+  public string Password { get; set; } = null!;
 }

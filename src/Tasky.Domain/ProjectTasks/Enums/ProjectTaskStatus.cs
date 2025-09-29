@@ -1,8 +1,8 @@
 namespace Tasky.Domain.ProjectTasks.Enums;
 
-public enum TaskStatus
+public enum ProjectTaskStatus
 {
   ToDo,
   Done,
-  Cancalled
+  Cancelled
 }

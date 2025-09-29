@@ -6,9 +6,9 @@ POST   {{baseurl}}/api/v1/auth/register
 Content-Type: application/json
 
 {
-    "FirstName": "John",
+    "FirstName": "das",
     "LastName": "Doe",
-    "Email": "mahmoud@example.com",
+    "Email": "mahmoudexample@example.com",
     "Password": "P@ssword1"
 }
 ###################
@@ -26,5 +26,5 @@ Content-Type: application/json
 
 GET    {{baseurl}}/api/v1/auth/me
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NWM0MjhkNS1mZGRiLTRjZDUtOWFmYS1mNmM0ZmRhNWE1YmMiLCJlbWFpbCI6Im1haG1vdWRAZXhhbXBsZS5jb20iLCJyb2xlIjoiVXNlciIsIm5iZiI6MTc1OTA5MDQ0MCwiZXhwIjoxNzU5MDk0MDQwLCJpYXQiOjE3NTkwOTA0NDAsImlzcyI6ImxvY2FsaG9zdCIsImF1ZCI6ImxvY2FsaG9zdCJ9.x-P1dkU42zJtJuk-yhDfDng2xBMY109PCLF5oRNC3Jo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NWM0MjhkNS1mZGRiLTRjZDUtOWFmYS1mNmM0ZmRhNWE1YmMiLCJlbWFpbCI6Im1haG1vdWRAZXhhbXBsZS5jb20iLCJyb2xlIjoiVXNlciIsIm5iZiI6MTc1OTE2MjI0MiwiZXhwIjoxNzU5MTY1ODQyLCJpYXQiOjE3NTkxNjIyNDIsImlzcyI6ImxvY2FsaG9zdCIsImF1ZCI6ImxvY2FsaG9zdCJ9.p54h03I52ZF4MzvLAxRWd4Bz_CgUjwAVTk4M7gJg4x
 

@@ -1,4 +1,4 @@
-namespace Tasky.Application.Features.Users;
+namespace Tasky.Application.Features.Identity;
 
 public class LoginRequest
 {

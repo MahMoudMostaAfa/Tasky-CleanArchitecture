@@ -3,7 +3,11 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Tasky.Application.Common.Interfaces;
-using Tasky.Application.Features.Users;
+using Tasky.Application.Features.Identity;
+using Tasky.Application.Features.Identity.Commands.Login;
+using Tasky.Application.Features.Identity.Commands.Register;
+using Tasky.Application.Features.Identity.Queries.GetUserInfo;
+
 
 namespace Tasky.Api.V1.Controllers;
 
@@ -19,19 +23,29 @@ public class AuthController : ApiController
   }
 
   [HttpPost("register")]
-  public async Task<IActionResult> Register(RegisterUserRequest registerUserRequest)
+  public async Task<IActionResult> Register([FromBody] RegisterCommand registerCommand, CancellationToken ct = default)
   {
+    var result = await _sender.Send(registerCommand, ct);
 
+    return result.Match(
+     token => Ok(new { Token = token }),
+     errors => Problem(errors)
 
-    return Problem();
+    );
   }
 
   [HttpPost("login")]
-  public async Task<IActionResult> Login(LoginRequest loginRequest)
+  public async Task<IActionResult> Login([FromBody] LoginCommand loginCommand, CancellationToken ct = default)
   {
+    var result = await _sender.Send(loginCommand, ct);
 
 
-    return Problem();
+    return result.Match(
+      token => Ok(new { Token = token }),
+      errors => Problem(errors)
+    );
+
+
   }
 
 
@@ -39,11 +53,13 @@ public class AuthController : ApiController
   [Authorize]
   public async Task<IActionResult> GetUserInfo()
   {
+    var GetUserInfoQuery = new GetUserInfoQuery();
+    var result = await _sender.Send(GetUserInfoQuery);
 
-
-
-
-    return Problem();
+    return result.Match(
+      user => Ok(user),
+      errors => Problem(errors)
+    );
   }
 }
 

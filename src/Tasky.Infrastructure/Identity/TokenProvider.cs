@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Tasky.Application.Common.Interfaces;
+using Tasky.Application.Features.Identity.Dtos;
 
 
 namespace Tasky.Infrastructure.Identity;

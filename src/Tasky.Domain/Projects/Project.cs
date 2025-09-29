@@ -32,6 +32,30 @@ public class Project : Entity
     CreatedAt = createdAt;
   }
 
+  public static Result<Project> Create(string name, string? description, string ownerId)
+  {
 
+    if (string.IsNullOrWhiteSpace(ownerId))
+    {
+      return ProjectErrors.InValidOwnerId;
+    }
 
+    if (string.IsNullOrWhiteSpace(name))
+    {
+      return ProjectErrors.NameIsRequired;
+    }
+
+    var Project = new Project(
+      id: Guid.NewGuid(),
+      name: name,
+      description: description,
+      ownerId: ownerId,
+      createdAt: DateTime.UtcNow
+    );
+
+    return Project;
+
+  }
 }
+
+

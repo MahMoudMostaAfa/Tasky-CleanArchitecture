@@ -1,6 +1,6 @@
 namespace Tasky.Domain.ProjectTasks.Enums;
 
-public enum TaskPriority
+public enum ProjectTaskPriority
 {
   Low = 1,
   Medium = 2,

@@ -1,4 +1,5 @@
-using Tasky.Application.Features.Users;
+using Tasky.Application.Features.Identity;
+using Tasky.Application.Features.Identity.Dtos;
 using Tasky.Domain.Common.Results;
 
 namespace Tasky.Application.Common.Interfaces;
