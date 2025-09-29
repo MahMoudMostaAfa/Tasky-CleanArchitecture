@@ -3,7 +3,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace Tasky.Api.Controllers;
+namespace Tasky.Api.V1.Controllers;
 
 [ApiController]
 public class ApiController : ControllerBase
