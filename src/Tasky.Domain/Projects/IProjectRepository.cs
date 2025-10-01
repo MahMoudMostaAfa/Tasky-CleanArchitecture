@@ -9,6 +9,9 @@ public interface IProjectRepository
   Task<Result<Project>> GetByIdAsync(Guid id);
   Task<IEnumerable<Project>> GetAllByUserIdAsync(string userId, CancellationToken cancellationToken = default);
 
+  Task<Result<Project>> GetWithTasksByIdAsync(Guid id);
+
+
   void Delete(Project project);
 
 }

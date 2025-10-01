@@ -1,6 +1,8 @@
 @baseurl =https://localhost:7017
+@token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NWM0MjhkNS1mZGRiLTRjZDUtOWFmYS1mNmM0ZmRhNWE1YmMiLCJlbWFpbCI6Im1haG1vdWRAZXhhbXBsZS5jb20iLCJyb2xlIjoiVXNlciIsIm5iZiI6MTc1OTE2NjY1MywiZXhwIjoxNzU5Mjg2NjUzLCJpYXQiOjE3NTkxNjY2NTMsImlzcyI6ImxvY2FsaG9zdCIsImF1ZCI6ImxvY2FsaG9zdCJ9.facYIVGUVEVGyY3-ik-DtlMP0Mt8ubbC8CWlAlVkS7Q
 
-
+@taskId = 95499071-bfbb-402f-a314-1eb36f17942f
+@projectId = FAF91A91-FB25-40EB-A9DA-E38AE80E9E9E
 /// register
 POST   {{baseurl}}/api/v1/auth/register
 Content-Type: application/json
@@ -26,5 +28,89 @@ Content-Type: application/json
 
 GET    {{baseurl}}/api/v1/auth/me
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NWM0MjhkNS1mZGRiLTRjZDUtOWFmYS1mNmM0ZmRhNWE1YmMiLCJlbWFpbCI6Im1haG1vdWRAZXhhbXBsZS5jb20iLCJyb2xlIjoiVXNlciIsIm5iZiI6MTc1OTE2MjI0MiwiZXhwIjoxNzU5MTY1ODQyLCJpYXQiOjE3NTkxNjIyNDIsImlzcyI6ImxvY2FsaG9zdCIsImF1ZCI6ImxvY2FsaG9zdCJ9.p54h03I52ZF4MzvLAxRWd4Bz_CgUjwAVTk4M7gJg4x
+Authorization: Bearer {{token}}
+
+################### Create Project
+
+Post {{baseurl}}/api/v1/projects
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "First Project",
+    "description": "This is the first project."
+}
+
+################### GET PROJECT BY ID 
+
+GET  {{baseurl}}/api/v1/projects/{{projectId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+################### GET PROJECTS OF CURRENT USER
+
+GET  {{baseurl}}/api/v1/projects/
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+################### Delete PROJECT OF CURRENT USER
+
+DELETE   {{baseurl}}/api/v1/projects/{{projectId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+################### Update PROJECT OF CURRENT USER
+
+PUT    {{baseurl}}/api/v1/projects/{{projectId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "second Project",
+    "description": "This is the second project."
+    
+}
+################### CREATE TASK FOR  PROJECT OF CURRENT USER
+
+POST {{baseurl}}/api/v1/projects/{{projectId}}/tasks
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+   "title": "a3a",
+   "description": "", 
+   "dueDate": "2024-12-31T23:59:59Z",
+   "priority": "high"
+
+}
+################### GET TASKS FOR  PROJECT 
+
+GET  {{baseurl}}/api/v1/projects/{{projectId}}/tasks
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+//
+
+################### GET TASK BY ID FOR  PROJECT 
+
+GET  {{baseurl}}/api/v1/projects/{{projectId}}/tasks/{{taskId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+################### GET TASK BY ID FOR  PROJECT 
+
+PUT   {{baseurl}}/api/v1/projects/{{projectId}}/tasks/{{taskId}}/change-status
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+   "status": 2
+}
+
+
+################### DELETE TASK BY ID FOR  PROJECT 
+
+DELETE  {{baseurl}}/api/v1/projects/{{projectId}}/tasks/{{taskId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
 

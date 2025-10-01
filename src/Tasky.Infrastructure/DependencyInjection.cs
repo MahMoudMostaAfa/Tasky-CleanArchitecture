@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Tasky.Application.Common.Interfaces;
 using Tasky.Domain.Projects;
+using Tasky.Domain.ProjectTasks;
 using Tasky.Infrastructure.Data;
 using Tasky.Infrastructure.Identity;
 using Tasky.Infrastructure.Repositories;
@@ -70,6 +71,7 @@ public static class DependencyInjection
     services.AddScoped<IUnitOfWork, UnitOfWork>();
 
     services.AddScoped<IProjectRepository, ProjectRepository>();
+    services.AddScoped<ITaskRepository, TaskRepository>();
 
     services.AddScoped<ITokenProvider, TokenProvider>();
 

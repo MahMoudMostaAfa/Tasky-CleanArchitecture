@@ -39,5 +39,17 @@ public class ProjectRepository : IProjectRepository
     _context.Projects.Remove(project);
 
   }
+  public async Task<Result<Project>> GetWithTasksByIdAsync(Guid id)
+  {
+
+
+    var project = await _context.Projects
+      .Include(p => p.ProjectTasks)
+      .FirstOrDefaultAsync(p => p.Id == id);
+
+    if (project is null) return ProjectErrors.ProjectNotFound;
+
+    return project;
+  }
 
 }

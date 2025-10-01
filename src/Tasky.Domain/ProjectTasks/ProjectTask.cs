@@ -35,17 +35,19 @@ public class ProjectTask : Entity
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 
 
-  private ProjectTask(Guid id, string title, string? description, Guid projectId, DateTime createdAt, DateTime dueDate) : base(id)
+  private ProjectTask(Guid id, string title, string? description, Guid projectId, DateTime createdAt, DateTime? dueDate, ProjectTaskPriority? priority, string? assignedTo) : base(id)
   {
     Title = title;
     Description = description;
     ProjectId = projectId;
     CreatedAt = createdAt;
     DueDateUtc = dueDate;
+    Priority = priority ?? ProjectTaskPriority.Medium;
+    AssignedTo = assignedTo;
   }
 
 
-  public static Result<ProjectTask> Create(string title, string? description, Guid projectId, DateTime dueDate)
+  public static Result<ProjectTask> Create(string title, string? description, Guid projectId, DateTime? dueDate, ProjectTaskPriority? priority, string? assignedTo = null)
   {
     if (string.IsNullOrWhiteSpace(title))
     {
@@ -63,12 +65,26 @@ public class ProjectTask : Entity
       description: description,
       projectId: projectId,
       createdAt: DateTime.UtcNow,
-      dueDate: dueDate
+      dueDate: dueDate,
+      priority: priority,
+      assignedTo: assignedTo
     );
 
     return projectTask;
   }
 
+  public Result<Updated> UpdateStatus(ProjectTaskStatus newStatus)
+  {
+    if (Status == newStatus)
+    {
+      return ProjectTaskErrors.StatusUnchanged;
+    }
+
+    Status = newStatus;
+    ModifiedAt = DateTime.UtcNow;
+
+    return Result.Updated;
+  }
 
 
 }
