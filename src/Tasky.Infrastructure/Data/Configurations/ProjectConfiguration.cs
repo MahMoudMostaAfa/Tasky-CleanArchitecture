@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Tasky.Domain.Projects;
 using Tasky.Domain.ProjectTasks;
 
-namespace Tasky.Infrastructure.Data.Configuration;
+namespace Tasky.Infrastructure.Data.Configurations;
 
 
 public class ProjectConfiguration : IEntityTypeConfiguration<Project>

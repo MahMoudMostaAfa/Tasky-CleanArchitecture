@@ -1,8 +1,9 @@
 @baseurl =https://localhost:7017
-@token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NWM0MjhkNS1mZGRiLTRjZDUtOWFmYS1mNmM0ZmRhNWE1YmMiLCJlbWFpbCI6Im1haG1vdWRAZXhhbXBsZS5jb20iLCJyb2xlIjoiVXNlciIsIm5iZiI6MTc1OTE2NjY1MywiZXhwIjoxNzU5Mjg2NjUzLCJpYXQiOjE3NTkxNjY2NTMsImlzcyI6ImxvY2FsaG9zdCIsImF1ZCI6ImxvY2FsaG9zdCJ9.facYIVGUVEVGyY3-ik-DtlMP0Mt8ubbC8CWlAlVkS7Q
+@token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NWM0MjhkNS1mZGRiLTRjZDUtOWFmYS1mNmM0ZmRhNWE1YmMiLCJlbWFpbCI6Im1haG1vdWRAZXhhbXBsZS5jb20iLCJyb2xlIjoiVXNlciIsIm5iZiI6MTc1OTM3MTAyMiwiZXhwIjoxNzU5NDkxMDIyLCJpYXQiOjE3NTkzNzEwMjIsImlzcyI6ImxvY2FsaG9zdCIsImF1ZCI6ImxvY2FsaG9zdCJ9.aGLMIL_Z2uejpUZK4CY2r8XjyybOkGclD_aa24orsk4
 
-@taskId = 95499071-bfbb-402f-a314-1eb36f17942f
+@taskId = 0c3af0b5-d0ae-48ce-8ad3-20b433accff8
 @projectId = FAF91A91-FB25-40EB-A9DA-E38AE80E9E9E
+@commentId=3AA08069-7CED-4299-9176-7BBBDFCB600B
 /// register
 POST   {{baseurl}}/api/v1/auth/register
 Content-Type: application/json
@@ -113,4 +114,48 @@ Authorization: Bearer {{token}}
 DELETE  {{baseurl}}/api/v1/projects/{{projectId}}/tasks/{{taskId}}
 Content-Type: application/json
 Authorization: Bearer {{token}}
+
+
+
+################### Create TASK COMMENT BY ID FOR  PROJECT 
+
+POST  {{baseurl}}/api/v1/tasks/{{taskId}}/comments
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "Content": "This is a comment. 8"
+}
+
+
+################### Update TASK COMMENT BY ID FOR  PROJECT 
+
+PUT   {{baseurl}}/api/v1/tasks/{{taskId}}/comments/{{commentId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "Content": "This is an updated comment."
+}
+
+################### Delete TASK COMMENT BY ID FOR  PROJECT
+
+DELETE   {{baseurl}}/api/v1/tasks/{{taskId}}/comments/{{commentId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+
+################### GET TASK COMMENT BY ID FOR  PROJECT
+
+GET  {{baseurl}}/api/v1/tasks/{{taskId}}/comments/{{commentId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+################### GET TASK COMMENTS BY ID FOR  PROJECT
+
+GET  {{baseurl}}/api/v1/tasks/{{taskId}}/comments
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
 
