@@ -59,15 +59,15 @@ public class Project : Entity
 
   public Result<Updated> Update(string? name, string? description)
   {
-    if (!string.IsNullOrWhiteSpace(name) && name != Name)
+
+    if (string.IsNullOrWhiteSpace(name))
     {
-      Name = name;
-    }
-    if (!string.IsNullOrWhiteSpace(description) && description != Description)
-    {
-      Description = description;
+      return ProjectErrors.NameIsRequired;
     }
 
+
+    Name = name != Name ? name : Name;
+    Description = description != Description ? description : Description;
     ModifiedAt = DateTime.UtcNow;
 
     return Result.Updated;
