@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.DependencyInjection;
+using Tasky.Api.OpenApi.Transformers;
 using Tasky.Api.Services;
 using Tasky.Application.Common.Interfaces;
 namespace Tasky.Api;
@@ -16,6 +17,7 @@ public static class DependencyInjection
     .AddCustomApiVersioning()
     .AddControllersWithJsonConfigurations()
     .AddIdentityInfraStructure()
+    .AddApiDocumentation();
     ;
 
 
@@ -60,5 +62,31 @@ public static class DependencyInjection
     services.AddHttpContextAccessor();
 
     return services;
+  }
+
+  public static IServiceCollection AddApiDocumentation(this IServiceCollection services)
+  {
+
+    string[] versions = ["v1"];
+
+    foreach (var version in versions)
+    {
+      services.AddOpenApi(version, options =>
+      {
+
+        //versioning config 
+
+        options.AddDocumentTransformer<VersionInfoTransformer>();
+
+
+        // Security Scheme config
+        options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
+        options.AddOperationTransformer<BearerSecuritySchemeTransformer>();
+      });
+
+    }
+
+    return services;
+
   }
 }
