@@ -3,6 +3,7 @@ using Tasky.Application.Common.Errors;
 using Tasky.Application.Common.Interfaces;
 using Tasky.Domain.Common.Results;
 using Tasky.Domain.Projects;
+using Tasky.Domain.Projects.Events;
 
 namespace Tasky.Application.Features.Projects.Commands.UpdateProject;
 
@@ -23,6 +24,12 @@ public class UpdateProjectCommandHandler(IUnitOfWork unitOfWork, IProjectReposit
     var result = project.Update(request.Name, request.Description);
 
     if (result.IsError) return result.Errors;
+
+    project.AddDomainEvent(new ModifiedProjectEvent()
+    {
+      Tag = "project"
+    });
+
 
     await unitOfWork.SaveChangesAsync(cancellationToken);
 

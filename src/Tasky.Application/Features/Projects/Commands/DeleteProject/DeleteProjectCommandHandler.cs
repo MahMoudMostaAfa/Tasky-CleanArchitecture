@@ -3,6 +3,7 @@ using Tasky.Application.Common.Errors;
 using Tasky.Application.Common.Interfaces;
 using Tasky.Domain.Common.Results;
 using Tasky.Domain.Projects;
+using Tasky.Domain.Projects.Events;
 
 namespace Tasky.Application.Features.Projects.Commands.DeleteProject;
 
@@ -24,7 +25,12 @@ public class DeleteProjectCommandHandler(ICurrentUser currentUser, IProjectRepos
 
     if (project.OwnerId != UserId) return ProjectErrors.UserNotAuthorized;
 
+
     projectRepository.Delete(project);
+    project.AddDomainEvent(new ModifiedProjectEvent()
+    {
+      Tag = "project"
+    });
 
     await unitOfWork.SaveChangesAsync(cancellationToken);
 

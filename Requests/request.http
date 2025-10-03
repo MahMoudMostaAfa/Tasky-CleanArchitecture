@@ -1,5 +1,5 @@
 @baseurl =https://localhost:7017
-@token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NWM0MjhkNS1mZGRiLTRjZDUtOWFmYS1mNmM0ZmRhNWE1YmMiLCJlbWFpbCI6Im1haG1vdWRAZXhhbXBsZS5jb20iLCJyb2xlIjoiVXNlciIsIm5iZiI6MTc1OTM3MTAyMiwiZXhwIjoxNzU5NDkxMDIyLCJpYXQiOjE3NTkzNzEwMjIsImlzcyI6ImxvY2FsaG9zdCIsImF1ZCI6ImxvY2FsaG9zdCJ9.aGLMIL_Z2uejpUZK4CY2r8XjyybOkGclD_aa24orsk4
+@token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NWM0MjhkNS1mZGRiLTRjZDUtOWFmYS1mNmM0ZmRhNWE1YmMiLCJlbWFpbCI6Im1haG1vdWRAZXhhbXBsZS5jb20iLCJyb2xlIjoiVXNlciIsIm5iZiI6MTc1OTUxNTkxNCwiZXhwIjoxNzU5NjM1OTE0LCJpYXQiOjE3NTk1MTU5MTQsImlzcyI6ImxvY2FsaG9zdCIsImF1ZCI6ImxvY2FsaG9zdCJ9._8QLFjm6idOM1YkrjerUrS4lUeQ2I_Dv3hOQs1kinRs
 
 @taskId = 0c3af0b5-d0ae-48ce-8ad3-20b433accff8
 @projectId = FAF91A91-FB25-40EB-A9DA-E38AE80E9E9E
@@ -38,7 +38,7 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "name": "First Project",
+    "name": "ADD Project",
     "description": "This is the first project."
 }
 

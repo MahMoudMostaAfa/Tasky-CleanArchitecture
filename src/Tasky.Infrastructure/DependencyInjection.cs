@@ -2,6 +2,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Tasky.Application.Common.Interfaces;
@@ -66,7 +67,7 @@ public static class DependencyInjection
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSetting["Secret"]!))
       };
     });
-    services.AddScoped<IIdentityService, IdentityService>();
+    services.AddTransient<IIdentityService, IdentityService>();
 
     services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -76,6 +77,24 @@ public static class DependencyInjection
     services.AddScoped<ITokenProvider, TokenProvider>();
 
     services.AddScoped<ApplicationDbContextInitialiser>();
+
+
+
+    services.AddHybridCache(options =>
+    {
+      options.DefaultEntryOptions = new HybridCacheEntryOptions()
+      {
+
+        // L2 ==> distubtied
+        Expiration = TimeSpan.FromMinutes(10),
+
+        // L1  ==> memory
+        LocalCacheExpiration = TimeSpan.FromSeconds(5)
+
+
+
+      };
+    });
 
     return services;
 

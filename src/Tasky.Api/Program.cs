@@ -34,12 +34,13 @@ if (app.Environment.IsDevelopment())
   await app.InitialiseDatabaseAsync();
 
 }
-app.UseStatusCodePages();
+else
+{
 
-app.UseAuthentication();
+  app.UseHsts();
+}
 
-
-app.UseAuthorization();
+app.UseCoreMiddleWares();
 
 app.MapControllers();
 

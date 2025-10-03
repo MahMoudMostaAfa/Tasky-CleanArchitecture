@@ -3,6 +3,7 @@ using Tasky.Application.Common.Errors;
 using Tasky.Application.Common.Interfaces;
 using Tasky.Domain.Common.Results;
 using Tasky.Domain.Projects;
+using Tasky.Domain.Projects.Events;
 
 namespace Tasky.Application.Features.Projects.Commands.CreateProject;
 
@@ -18,7 +19,15 @@ public class CreateProjectCommandHandler(ICurrentUser currentUser, IProjectRepos
       description: request.Description,
       ownerId: userId
     );
-    await projectRepository.AddAsync(result.Value);
+    var project = result.Value;
+
+    project.AddDomainEvent(new ModifiedProjectEvent()
+    {
+      Tag = "project"
+    });
+
+    await projectRepository.AddAsync(project);
+
 
     await unitOfWork.SaveChangesAsync(cancellationToken);
 
